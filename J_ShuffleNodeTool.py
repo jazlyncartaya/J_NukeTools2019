@@ -85,14 +85,14 @@ def create_layer_shuffle():
         backdrop_node.knob('label').setValue(shuffle_layer)
         backdrop_node.knob('note_font_size').setValue(30)
 
-    # Set odd BackDrop Nodes light purple color:
+    # Set odd BackDrop nodes light purple color:
 
     light_purple = int('%02x%02x%02x%02x' % (0.452*255, 0.409*255,
                                              0.625*255, 255), 16)
     for backdrop_node in backdrop_nodes[::2]:
         backdrop_node.knob('tile_color').setValue(light_purple)
 
-    # Set even BackDrop Nodes dark purple color:
+    # Set even BackDrop nodes dark purple color:
 
     dark_purple = int('%02x%02x%02x%02x' % (0.318*255, 0.204*255,
                                             0.592*255, 255), 16)
