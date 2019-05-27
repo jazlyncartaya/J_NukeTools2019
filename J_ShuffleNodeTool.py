@@ -1,11 +1,10 @@
-# J_ShuffleNodeTool v.1.0.0
-# Copyright (c) 2019 Jazlyn Cartaya. All Rights Reserved.
+# J_CreateLayerShuffle Tool v.1.0.1
+# 2019, Jazlyn Cartaya
 # Add to menu.py
-#import nuke
+# import nuke
 
-    # SHUFFLE NODE TOOL
 
-def shuffle_node_tool():
+def create_layer_shuffle():
 
     # Define variables:
 
@@ -57,14 +56,12 @@ def shuffle_node_tool():
     for shuffle_node in shuffle_nodes:
         shuffle_node.setSelected(True)
 
-    shuffle_positionX = 164
     for shuffle_node in shuffle_nodes:
         shuffle_x_position = nuke.Node.xpos(shuffle_node)
         shuffle_y_position = nuke.Node.ypos(dot_node)
         shuffle_node.setYpos(exr_y_position + 500)
-        shuffle_positionX += 164
 
-    # Set Input:
+    # Set input:
 
     dot_nodes[0].setInput(0, selected)
 
@@ -72,7 +69,7 @@ def shuffle_node_tool():
         next_dot = dot_nodes[i]
         dot_node.setInput(0, next_dot)
 
-    # Create BackDrop Node for each Shuffle node:
+    # Create BackDrop node for each Shuffle node:
 
     for shuffle_node in shuffle_nodes:
         shuffle_node.setSelected(True)
@@ -81,31 +78,34 @@ def shuffle_node_tool():
         backdrop_node.knob('bdheight').setValue(358)
         backdrop_nodes.append(backdrop_node)
 
-    # Label BackDrop Nodes:
+    # Label BackDrop nodes:
 
     for i, backdrop_node in enumerate(backdrop_nodes):
         shuffle_layer = shuffle_layers[i]
         backdrop_node.knob('label').setValue(shuffle_layer)
         backdrop_node.knob('note_font_size').setValue(30)
 
-    # Set Odd BackDrop Nodes' Light Purple Color:
+    # Set odd BackDrop Nodes light purple color:
 
-    light_purple = int('%02x%02x%02x%02x' % (0.452*255, 0.409*255, 0.625*255, 255), 16)
+    light_purple = int('%02x%02x%02x%02x' % (0.452*255, 0.409*255,
+                                             0.625*255, 255), 16)
     for backdrop_node in backdrop_nodes[::2]:
         backdrop_node.knob('tile_color').setValue(light_purple)
 
-    # Set Even BackDrop Nodes' Dark Purple Color:
+    # Set even BackDrop Nodes dark purple color:
 
-    dark_purple = int('%02x%02x%02x%02x' % (0.318*255, 0.204*255, 0.592*255, 255), 16)
+    dark_purple = int('%02x%02x%02x%02x' % (0.318*255, 0.204*255,
+                                            0.592*255, 255), 16)
     for backdrop_node in backdrop_nodes[1::2]:
         backdrop_node.knob('tile_color').setValue(dark_purple)
 
-    # Set Position of BackDrop Nodes:
+    # Set position of BackDrop nodes:
 
-    backdrop_positionX = 164
+    backdrop_positionX = 0
     for backdrop_node in backdrop_nodes:
         backdrop_x_position = nuke.Node.xpos(backdrop_node)
         backdrop_y_position = nuke.Node.ypos(backdrop_node)
-        backdrop_node.setXpos(shuffle_x_position + backdrop_positionX -540)
+        backdrop_node.setXpos(exr_x_position + backdrop_positionX - 40)
         backdrop_node.setYpos(shuffle_y_position + 34)
         backdrop_positionX += 164
+
