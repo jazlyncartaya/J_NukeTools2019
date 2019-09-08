@@ -1,4 +1,4 @@
-# J_AttachNodes Tool v.2.0.0
+# J_AttachNodes Tool v.2.0.1
 # Jazlyn Cartaya, 2019
 # Add to menu.py
 
@@ -11,8 +11,6 @@ import sys
 import PySide2
 from PySide2.QtWidgets import *
 from PySide2.QtCore import *
-
-APP = QApplication.instance()
 
 
 class AttachNodes(QWidget):
@@ -159,7 +157,7 @@ change in all created nodes:""")
         # Line widget:
         self.optional_value = QLineEdit()
         self.optional_value.setToolTip('Type in the value you would like to '
-                                       'set the knob to in all created nodes.')
+                                        'set the knob to in all created nodes.')
         self.optional_value.setPlaceholderText('number value')
 
         # Button widget:
@@ -214,5 +212,4 @@ def show_an_panel():  # show panels
     show_an_panel.panel_one.show()
 
     show_an_panel.created_nodes_list = show_an_panel.panel_one.created_nodes
-
-    APP.exec_()
+    
